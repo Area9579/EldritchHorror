@@ -16,4 +16,3 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		z_index += 1
 		(area as EatingZone).planet_suck.emit(self)
 		already_eaten = true
-		#die()

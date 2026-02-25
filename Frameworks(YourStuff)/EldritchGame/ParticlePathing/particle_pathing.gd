@@ -53,10 +53,6 @@ func space_out_planets() -> void:
 		(child as EldritchParticleFollow).progress_ratio = progress_amount
 
 func _on_bad_planet_eaten() -> void:
-	for planet in planets:
-		if is_instance_valid(planet):
-			#TODO: implement the new updated version based on area region
-			pass
 	bad_planet_eaten.emit()
 
 func call_planet_decrease() -> void:

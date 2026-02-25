@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://clp235kdxvy5f" path="res://Frameworks(YourStuff)/EldritchGame/ParticlePathing/particle_pathing.gd" id="1_uvmi8"]
 [ext_resource type="Script" uid="uid://0e8hf71dtk1k" path="res://Frameworks(YourStuff)/EldritchGame/Music/AdaptiveMusic/eldritch_adaptive_music.gd" id="2_w84bd"]
 [ext_resource type="AudioStream" uid="uid://nucljekissl0" path="res://Frameworks(YourStuff)/EldritchGame/Music/bigcutething.mp3" id="3_o448g"]
+[ext_resource type="AudioStream" uid="uid://dmksbprg0unkj" path="res://Frameworks(YourStuff)/EldritchGame/Music/ready,set,go.mp3" id="4_qdd43"]
+[ext_resource type="AudioStream" uid="uid://c7ish8e7pfvjy" path="res://Frameworks(YourStuff)/EldritchGame/Music/bigdubs.mp3" id="5_odygd"]
 
 [sub_resource type="Curve2D" id="Curve2D_peftd"]
 resource_local_to_scene = true
@@ -15,11 +17,22 @@ point_count = 9
 curve = SubResource("Curve2D_peftd")
 script = ExtResource("1_uvmi8")
 
-[node name="EldritchAdaptiveMusic" type="Node" parent="." unique_id=850648349 node_paths=PackedStringArray("master_track") groups=["EldritchAdaptiveMusic"]]
+[node name="EldritchAdaptiveMusic" type="Node" parent="." unique_id=850648349 node_paths=PackedStringArray("master_track", "intro", "win_outro", "lose_outro") groups=["EldritchAdaptiveMusic"]]
 script = ExtResource("2_w84bd")
 master_track = NodePath("Master")
+intro = NodePath("Intro")
+win_outro = NodePath("Win")
+lose_outro = NodePath("Lose")
 bpm = 238.0
 metadata/_custom_type_script = "uid://0e8hf71dtk1k"
 
 [node name="Master" type="AudioStreamPlayer" parent="EldritchAdaptiveMusic" unique_id=1599165816]
 stream = ExtResource("3_o448g")
+
+[node name="Intro" type="AudioStreamPlayer" parent="EldritchAdaptiveMusic" unique_id=1609270850]
+stream = ExtResource("4_qdd43")
+
+[node name="Lose" type="AudioStreamPlayer" parent="EldritchAdaptiveMusic" unique_id=376184602]
+
+[node name="Win" type="AudioStreamPlayer" parent="EldritchAdaptiveMusic" unique_id=1307397838]
+stream = ExtResource("5_odygd")
