@@ -1,0 +1,1 @@
+class_name EldritchParticleFollow extends PathFollow2D

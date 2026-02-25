@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://wimvir2g37io"]
+
+[ext_resource type="Script" uid="uid://bk6iqdpwoi5hx" path="res://Frameworks(YourStuff)/EldritchGame/EldritchGameMain/planet_game.gd" id="1_ayi0r"]
+[ext_resource type="Script" uid="uid://clp235kdxvy5f" path="res://Frameworks(YourStuff)/EldritchGame/ParticlePathing/particle_pathing.gd" id="2_eq008"]
+[ext_resource type="PackedScene" uid="uid://jaq2sk636hlb" path="res://Frameworks(YourStuff)/EldritchGame/Planets/Scenes/Planet.tscn" id="3_k2kom"]
+[ext_resource type="PackedScene" uid="uid://cd6d6c3cl3n5o" path="res://Frameworks(YourStuff)/EldritchGame/BigGuy/monsta.tscn" id="4_eq008"]
+
+[sub_resource type="Curve2D" id="Curve2D_3vgps"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 832, 329, 0, 0, 0, 0, 673, 316, 0, 0, 0, 0, 512, 319, 0, 0, 0, 0, 324, 335, 0, 0, 0, 0, 292, 380, 0, 0, 0, 0, 309, 438, 0, 0, 0, 0, 455, 473, 0, 0, 0, 0, 736, 465, 0, 0, 0, 0, 850, 452, 0, 0, 0, 0, 906, 394, 0, 0, 0, 0, 832, 329)
+}
+point_count = 11
+
+[node name="EldritchGame" type="Node2D" unique_id=425728203]
+process_mode = 1
+script = ExtResource("1_ayi0r")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=694289286]
+z_index = -3
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+color = Color(0.12156863, 0.12156863, 0.11764706, 1)
+
+[node name="ParticlePathing" type="Path2D" parent="." unique_id=1995377005]
+position = Vector2(-9, -35)
+curve = SubResource("Curve2D_3vgps")
+script = ExtResource("2_eq008")
+metadata/_custom_type_script = "uid://clp235kdxvy5f"
+
+[node name="Planet" parent="ParticlePathing" unique_id=2078059064 instance=ExtResource("3_k2kom")]
+self_modulate = Color(1, 0, 1, 1)
+
+[node name="Planet2" parent="ParticlePathing" unique_id=333131645 instance=ExtResource("3_k2kom")]
+modulate = Color(0, 1, 1, 1)
+scale = Vector2(0.87, 0.87)
+
+[node name="Planet3" parent="ParticlePathing" unique_id=1704868276 instance=ExtResource("3_k2kom")]
+modulate = Color(1, 1, 0, 1)
+
+[node name="Planet4" parent="ParticlePathing" unique_id=1842489898 instance=ExtResource("3_k2kom")]
+scale = Vector2(1.125, 1.125)
+
+[node name="Planet5" parent="ParticlePathing" unique_id=970036660 instance=ExtResource("3_k2kom")]
+
+[node name="Planet6" parent="ParticlePathing" unique_id=330445079 instance=ExtResource("3_k2kom")]
+scale = Vector2(0.92, 0.92)
+
+[node name="Monsta" parent="." unique_id=161056806 instance=ExtResource("4_eq008")]
+position = Vector2(586, 323)
+
+[node name="Timer" type="Timer" parent="." unique_id=21950408]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="ParticlePathing" method="_on_timer_timeout"]

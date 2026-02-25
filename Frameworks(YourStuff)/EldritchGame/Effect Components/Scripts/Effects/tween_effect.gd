@@ -1,9 +1,18 @@
-@abstract class_name OldTweenEffect extends Node
+@abstract class_name TweenEffect extends Node
 ## The TweenEffect class is an abstract class meant to be used to build out other
 ## effect classes using tweens. [br]
 ## This class contains all of the information relating to the tween including
 ## transitions, easing, and the tween's duration.
 
+
+@export_category("Universal Parameters")
+## Determines if the effect will loop while playing.
+@export var loop : bool = false
+
+## Starts the effect upon the node becoming ready
+@export var autostart : bool = false
+
+@export_category("Transition Parameters")
 ## Type of [TransitionType] of the tween.
 @export var trans_type : Tween.TransitionType
 ## Type of [EaseType] of the tween.
@@ -17,20 +26,25 @@ var tween : Tween
 
 ## This function resets and creates a new tween with all given parameters:
 ## [member trans_type], [member ease_type].
-func reset_tween():
+func reset_tween() -> void:
 	# If there is a current tween, abort it
 	if tween:
 		tween.kill()
-	# Create the tween with the [membet ease_type], [member trans_type] and
-	# allow for tweening to be done simultaneously
+	# Setup the new tween
+	setup_tween()
+
+## Creates the tween with the [member ease_type], [member trans_type] and
+## allow for tweening to be done simultaneously
+func setup_tween() -> void:
 	tween = create_tween().set_ease(ease_type).set_trans(trans_type).set_parallel(true)
+
+
+## Kill the [member tween] if a [member tween] exists
+func stop_tween() -> void:
+	if tween:
+		tween.kill()
 
 
 @abstract func do_tween() -> void
 ## This function calls the specific application of the tween, which must be defined
 ## in any subclass of [TweenEffect].
-
-
-@abstract func do_tween_from_values() -> void
-	## This function takes starting parameters, then call [method do_tween].
-	## Parameters this function takes must be individually defined.

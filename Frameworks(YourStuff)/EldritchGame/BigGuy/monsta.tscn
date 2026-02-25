@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cd6d6c3cl3n5o"]
+
+[ext_resource type="Texture2D" uid="uid://c61aau1jumg7e" path="res://Frameworks(YourStuff)/EldritchGame/Assets/Bubble.png" id="1_oib2s"]
+[ext_resource type="Script" uid="uid://gfjf7u4o65vc" path="res://Frameworks(YourStuff)/EldritchGame/BigGuy/monsta.gd" id="2_0kg8r"]
+[ext_resource type="PackedScene" uid="uid://bjtulespe1alq" path="res://Frameworks(YourStuff)/EldritchGame/EatingZone/eating_zone.tscn" id="2_jq0kd"]
+
+[node name="Monsta" type="Sprite2D" unique_id=161056806]
+z_index = 1
+texture = ExtResource("1_oib2s")
+script = ExtResource("2_0kg8r")
+
+[node name="EatingZone" parent="." unique_id=210013374 instance=ExtResource("2_jq0kd")]
+position = Vector2(0, 98)
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=902371243]
+position = Vector2(0, 25)
