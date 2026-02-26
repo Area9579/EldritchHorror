@@ -2,6 +2,7 @@ class_name EldritchParticlePathing extends Path2D
 
 const PathFollow2d = preload('uid://d3xire3t1b2b5')
 const GOOD_PLANET = preload("uid://jaq2sk636hlb")
+const BAD_PLANET = preload("uid://dhjes0nrq5d64")
 
 var adaptive_music: EldritchAdaptiveMusic
 
@@ -32,14 +33,14 @@ func do_planet_beat_effect() -> void:
 func initialize_planets() -> void:
 	var good_planet : GoodPlanet
 	@warning_ignore("unused_variable")
-	var bad_planet : Planet # TODO: Add bad planet class
+	var bad_planet : BadPlanet
 	for toggle in planets_to_spawn:
 		if toggle:
 			good_planet = GOOD_PLANET.instantiate() as GoodPlanet
 			parent_planet_to_line_follow(good_planet)
 		else:
-			#bad_planet = BAD_PLANET.instantiate() as BadPlanet
-			#parent_planet_to_line_follow(bad_planet)
+			bad_planet = BAD_PLANET.instantiate() as BadPlanet
+			parent_planet_to_line_follow(bad_planet)
 			print('instancing bad planet')
 	path_movement_percent = 1.0 / planets.size()
 	space_out_planets()

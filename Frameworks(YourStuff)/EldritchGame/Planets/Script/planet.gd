@@ -6,6 +6,7 @@ class_name Planet extends Node2D
 
 var already_eaten : bool = false
 
+var texture_array : Array[Texture2D]
 
 func do_beat_effect() -> void:
 	beat_effect.do_tween()
@@ -18,6 +19,7 @@ func die() -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	print('do')
 	if area is EatingZone and not already_eaten:
 		(get_parent() as EldritchParticleFollow).is_being_eaten = true
 		z_index += 1

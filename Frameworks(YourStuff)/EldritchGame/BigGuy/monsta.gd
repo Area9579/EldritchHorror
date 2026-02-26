@@ -26,11 +26,12 @@ func suck_in_planet(planet : Planet):
 	else:
 		print("Rushing!")
 		hit_was_good = false
-	
+
 	if planet is GoodPlanet:
 		good_planet_eaten.emit(hit_was_good)
 	else:
 		bad_planet_eaten.emit()
+
 	
 	clap.play()
 	move_planet_to_marker(planet)
