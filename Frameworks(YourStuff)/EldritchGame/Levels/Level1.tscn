@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dk0o0bcnpxvl0"]
+
+[ext_resource type="Script" uid="uid://clp235kdxvy5f" path="res://Frameworks(YourStuff)/EldritchGame/ParticlePathing/particle_pathing.gd" id="1_670p7"]
+
+[sub_resource type="Curve2D" id="Curve2D_3vgps"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 165, -39, 0, 0, 0, 0, -207, -29, 0, 0, 0, 0, -283, -16, 0, 0, 0, 0, -325, 36, 0, 0, 0, 0, -271, 106, 0, 0, 0, 0, -185, 119, 0, 0, 0, 0, 285, 109, 0, 0, 0, 0, 325, 30, 0, 0, 0, 0, 288, -19, 0, 0, 0, 0, 164, -38)
+}
+point_count = 10
+
+[node name="Level1" type="Path2D" unique_id=507377545 groups=["ParticlePathing"]]
+curve = SubResource("Curve2D_3vgps")
+script = ExtResource("1_670p7")
+planets_to_spawn = Array[bool]([true, true, false, true, true, true, false, true, true, true, false, true])
+metadata/_custom_type_script = "uid://clp235kdxvy5f"

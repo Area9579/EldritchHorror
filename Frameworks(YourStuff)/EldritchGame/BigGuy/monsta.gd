@@ -15,7 +15,10 @@ func _ready() -> void:
 
 func suck_in_planet(planet : Planet):
 	var hit_was_good : bool
-	await adaptive_music.beat
+	
+	move_planet_to_marker(planet)
+	
+	
 	
 	if adaptive_music.bar_index % 4 == 0:
 		print("Good hit!")
@@ -26,15 +29,15 @@ func suck_in_planet(planet : Planet):
 	else:
 		print("Rushing!")
 		hit_was_good = false
-
+	await adaptive_music.beat
+	clap.play()
 	if planet is GoodPlanet:
 		good_planet_eaten.emit(hit_was_good)
 	else:
 		bad_planet_eaten.emit()
 
 	
-	clap.play()
-	move_planet_to_marker(planet)
+	
 
 func move_planet_to_marker(planet : Planet) -> void:
 	var tween : Tween = create_tween()

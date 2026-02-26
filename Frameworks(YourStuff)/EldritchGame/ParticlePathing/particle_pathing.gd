@@ -13,15 +13,23 @@ var paths_array : Array[EldritchParticleFollow] = []
 var should_be_moving : bool = true
 
 @export var planets_to_spawn : Array[bool]
+#
+#func _ready() -> void:
+	#
 
-func _ready() -> void:
+func initialize():
+	add_to_group("ParticlePathing")
 	adaptive_music = get_tree().get_first_node_in_group("EldritchAdaptiveMusic")
 	eldritch_game = get_tree().get_first_node_in_group("EldritchGame")
 	initialize_planets()
-	adaptive_music.start()
+
+func start():
+	#adaptive_music = get_tree().get_first_node_in_group("EldritchAdaptiveMusic")
+	#eldritch_game = get_tree().get_first_node_in_group("EldritchGame")
+	#initialize_planets()
+	#adaptive_music.start()
 	connect_adaptive_music_signals()
 	adaptive_music.half_bar.connect(do_planet_beat_effect)
-
 
 func do_planet_beat_effect() -> void:
 	for planet : Planet in planets:
@@ -36,12 +44,13 @@ func initialize_planets() -> void:
 	var bad_planet : BadPlanet
 	for toggle in planets_to_spawn:
 		if toggle:
+			eldritch_game.good_planets_left += 1
 			good_planet = GOOD_PLANET.instantiate() as GoodPlanet
 			parent_planet_to_line_follow(good_planet)
 		else:
 			bad_planet = BAD_PLANET.instantiate() as BadPlanet
 			parent_planet_to_line_follow(bad_planet)
-			print('instancing bad planet')
+			#print('instancing bad planet')
 	path_movement_percent = 1.0 / planets.size()
 	space_out_planets()
 

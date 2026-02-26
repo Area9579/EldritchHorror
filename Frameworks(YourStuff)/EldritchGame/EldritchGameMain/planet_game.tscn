@@ -6,14 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://cd6d6c3cl3n5o" path="res://Frameworks(YourStuff)/EldritchGame/BigGuy/monsta.tscn" id="4_eq008"]
 [ext_resource type="Texture2D" uid="uid://bri4lnwyvb3hv" path="res://Frameworks(YourStuff)/EldritchGame/Assets/Progressbar_fill.png" id="5_uniig"]
 [ext_resource type="PackedScene" uid="uid://ptsg4si05tkq" path="res://Frameworks(YourStuff)/EldritchGame/Music/AdaptiveMusic/eldritch_adaptive_music.tscn" id="6_uniig"]
+[ext_resource type="Script" uid="uid://ssv17t7js8ye" path="res://Frameworks(YourStuff)/EldritchGame/EldritchGameMain/planets_switcher.gd" id="7_io5bt"]
+[ext_resource type="Script" uid="uid://cv1tqomq6d35i" path="res://Frameworks(YourStuff)/EldritchGame/Effect Components/Scripts/Effects/node2D_effect.gd" id="8_1y03d"]
 
-[sub_resource type="Curve2D" id="Curve2D_3vgps"]
+[sub_resource type="Curve2D" id="Curve2D_io5bt"]
+resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 330, 23, 0, 0, 0, 0, -35, 26, 0, 0, 0, 0, -163, 24, 0, 0, 0, 0, -255, 72, 0, 0, 0, 0, -238, 119, 0, 0, 0, 0, -159, 154, 0, 0, 0, 0, -26, 162, 0, 0, 0, 0, 330, 161, 0, 0, 0, 0, 470, 115, 0, 0, 0, 0, 462, 62, 0, 0, 0, 0, 330, 23)
+"points": PackedVector2Array(0, 0, 0, 0, 165, -39, 0, 0, 0, 0, -207, -29, 0, 0, 0, 0, -283, -16, 0, 0, 0, 0, -325, 36, 0, 0, 0, 0, -271, 106, 0, 0, 0, 0, -185, 119, 0, 0, 0, 0, 285, 109, 0, 0, 0, 0, 325, 30, 0, 0, 0, 0, 288, -19, 0, 0, 0, 0, 164, -38)
 }
-point_count = 11
+point_count = 10
 
-[node name="EldritchGame" type="Node2D" unique_id=425728203 groups=["Eldritchgame"]]
+[node name="EldritchGame" type="Node2D" unique_id=425728203 groups=["EldritchGame"]]
 process_mode = 1
 script = ExtResource("1_ayi0r")
 
@@ -24,12 +27,12 @@ offset_bottom = 648.0
 mouse_filter = 2
 color = Color(0.12156863, 0.12156863, 0.11764706, 1)
 
-[node name="ParticlePathing" parent="." unique_id=248845500 instance=ExtResource("2_yw6km")]
-position = Vector2(481, 279)
-curve = SubResource("Curve2D_3vgps")
+[node name="ParticlePathing" parent="." unique_id=248845500 groups=["ParticlePathing"] instance=ExtResource("2_yw6km")]
+position = Vector2(585, 324)
+curve = SubResource("Curve2D_io5bt")
 planets_to_spawn = Array[bool]([true, true, false, true, true, false, true, true, false, true, true, false])
 
-[node name="Monsta" parent="." unique_id=161056806 instance=ExtResource("4_eq008")]
+[node name="Monsta" parent="." unique_id=161056806 groups=["Monsta"] instance=ExtResource("4_eq008")]
 position = Vector2(586, 323)
 
 [node name="Timer" type="Timer" parent="." unique_id=21950408]
@@ -45,3 +48,25 @@ texture_under = ExtResource("4_1sid8")
 texture_progress = ExtResource("5_uniig")
 
 [node name="EldritchAdaptiveMusic" parent="." unique_id=1392659806 instance=ExtResource("6_uniig")]
+process_mode = 3
+
+[node name="PlanetsSwitcher" type="Node" parent="." unique_id=1206839129]
+script = ExtResource("7_io5bt")
+
+[node name="Spawn" type="Node" parent="PlanetsSwitcher" unique_id=1939710686]
+script = ExtResource("8_1y03d")
+trans_type = 10
+ease_type = 2
+tween_duration = 0.5
+metadata/_custom_type_script = "uid://cv1tqomq6d35i"
+
+[node name="Die" type="Node" parent="PlanetsSwitcher" unique_id=1827590078]
+script = ExtResource("8_1y03d")
+end_position = Vector2(inf, 700)
+trans_type = 10
+ease_type = 2
+tween_duration = 0.5
+metadata/_custom_type_script = "uid://cv1tqomq6d35i"
+
+[node name="SpawnLocation" type="Marker2D" parent="PlanetsSwitcher" unique_id=1902139938]
+position = Vector2(577, -278)

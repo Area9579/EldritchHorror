@@ -19,7 +19,7 @@ func die() -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print('do')
+	#print('do')
 	if area is EatingZone and not already_eaten:
 		(get_parent() as EldritchParticleFollow).is_being_eaten = true
 		z_index += 1

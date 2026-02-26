@@ -81,11 +81,11 @@ func _process(_delta: float) -> void:
 		time_left_notifier.do_effect_sequence()
 
 func win_game():
-	print("you won!")
+	#print("you won!")
 	transition_out()
 
 func lose_game():
-	print("you lost!")
+	#/("you lost!")
 	transition_out()
 
 func transition_out():
