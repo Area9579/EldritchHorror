@@ -1,9 +1,9 @@
 class_name EldritchGame extends Game
 
 ## amount gained from perfect chomp
-const GOOD_EAT_AMOUNT : float = 20
+const GOOD_EAT_AMOUNT : float = 15
 ## amount gained from imperfect chomp
-const BAD_EAT_AMOUNT : float = 5
+const BAD_EAT_AMOUNT : float = 7
 
 const MOUSE_CURSOR = preload("uid://bog33u2o2xq6k")
 
@@ -69,13 +69,14 @@ func lose_game():
 
 func _on_good_planet_eaten(hit_was_good : bool):
 	planets_to_eat -= 1
+	
 	var value_to_add : float
 	if hit_was_good:
 		value_to_add = GOOD_EAT_AMOUNT
 	else:
 		value_to_add = BAD_EAT_AMOUNT
-	
-	tween_hunger_bar_to_value(hunger_bar.value + value_to_add)
+	print('print(value_to_add) ', value_to_add)
+	tween_hunger_bar_to_value(value_to_add)
 	
 	if planets_to_eat <= 0:
 		planet_switcher.switch_out_old_planets(get_tree().get_first_node_in_group("ParticlePathing"))
@@ -85,7 +86,8 @@ func _on_good_planet_eaten(hit_was_good : bool):
 		return
 
 func _on_bad_planet_eaten():
-	tween_hunger_bar_to_value(hunger_bar.value - (GOOD_EAT_AMOUNT * 1.2) )
+	tween_hunger_bar_to_value( - (GOOD_EAT_AMOUNT * 1.2) )
 
 func tween_hunger_bar_to_value(value : float):
-	get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BACK).tween_property(hunger_bar, "value", value, 0.3)
+	print(hunger_bar.value, ' tweeining to: ', hunger_bar.value + value)
+	get_tree().create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BACK).tween_property(hunger_bar, "value", hunger_bar.value + value, 0.3)
